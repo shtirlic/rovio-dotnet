@@ -28,7 +28,8 @@ namespace RovioLib
         {
             try
             {
-                return wc.DownloadString(cmd);
+                              
+                return wc.DownloadString(new Uri(new Uri(wc.BaseAddress),cmd));
             }
             catch (WebException e)
             {
@@ -47,7 +48,10 @@ namespace RovioLib
             this.RovioAddress = address;
         }
     }
-
+    /// <summary>
+    /// Main Class for accessing Rovio API
+    /// </summary>
+    
     public class RovioController
     {
         private RovioWebClient rwc;

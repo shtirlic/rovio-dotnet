@@ -8,6 +8,9 @@ using System.Drawing;
 
 namespace RovioLib
 {
+    /// <summary>
+    /// Class for performing http requests
+    /// </summary>
     class RovioWebClient
     {
         private WebClient wc;
@@ -37,6 +40,9 @@ namespace RovioLib
             }
         }
     }
+    /// <summary>
+    /// Class for stroring connection settings
+    /// </summary>
     class RovioSettings
     {
         public NetworkCredential RovioCredentials;
@@ -49,12 +55,19 @@ namespace RovioLib
         }
     }
     /// <summary>
-    /// Main Class for accessing Rovio API
+    /// Class for accessing Rovio API
     /// </summary>
     
     public class RovioController
     {
+        /// <summary>
+        /// Internal object of RovioWebClient class
+        /// </summary>
         private RovioWebClient rwc;
+        
+        /// <summary>
+        /// Internal object of RovioSettings class
+        /// </summary>
         private RovioSettings rovioSettings;
 
         /// <summary>
@@ -242,7 +255,7 @@ namespace RovioLib
         /// <returns></returns>
         public string ManualDrive(int drive, int speed)
         {
-            return rwc.Request("rev.cgi?Cmd=nav&action=18&d_value="+drive.ToString()+"&s_value="+speed.ToString());
+            return rwc.Request("rev.cgi?Cmd=nav&action=18&drive="+drive.ToString()+"&speed="+speed.ToString());
         }
 
 

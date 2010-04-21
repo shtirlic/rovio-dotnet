@@ -699,5 +699,16 @@ namespace RovioLib
             return rwc.Request("GetMediaFormat.cgi");
         }
 
+        /// <summary>
+        /// Turn off or turn on Rovio head light.
+        /// </summary>
+        /// <param name="Value">0 - Off, 1 - On</param>
+        /// <returns></returns>
+
+        public string SetHeadLight(int Value)
+        {
+            return rwc.Request("rev.cgi?Cmd=nav&action=19&LIGHT=" + Value.ToString());
+        }
+
     }
 }

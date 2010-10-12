@@ -4,6 +4,11 @@
         <name>RovioLib</name>
     </assembly>
     <members>
+        <member name="T:RovioLib.RovioSettings">
+            <summary>
+            Class for stroring connection settings
+            </summary>
+        </member>
         <member name="T:RovioLib.RovioWebClient">
             <summary>
             Class for performing http requests
@@ -15,11 +20,6 @@
             </summary>
             <param name="cmd">Command of the Rovio API to execute</param>
             <returns></returns>
-        </member>
-        <member name="T:RovioLib.RovioSettings">
-            <summary>
-            Class for stroring connection settings
-            </summary>
         </member>
         <member name="T:RovioLib.RovioController">
             <summary>

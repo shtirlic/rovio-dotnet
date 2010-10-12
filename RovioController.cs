@@ -9,6 +9,21 @@ using System.Drawing;
 namespace RovioLib
 {
     /// <summary>
+    /// Class for stroring connection settings
+    /// </summary>
+    class RovioSettings
+    {
+        public NetworkCredential RovioCredentials;
+        public string RovioAddress;
+
+        public RovioSettings(string username, string password, string address)
+        {
+            this.RovioCredentials = new NetworkCredential(username, password);
+            this.RovioAddress = address;
+        }
+    }
+
+    /// <summary>
     /// Class for performing http requests
     /// </summary>
     class RovioWebClient
@@ -38,20 +53,6 @@ namespace RovioLib
             {
                 return e.Message;
             }
-        }
-    }
-    /// <summary>
-    /// Class for stroring connection settings
-    /// </summary>
-    class RovioSettings
-    {
-        public NetworkCredential RovioCredentials;
-        public string RovioAddress;
-
-        public RovioSettings(string username, string password, string address)
-        {
-            this.RovioCredentials = new NetworkCredential(username, password);
-            this.RovioAddress = address;
         }
     }
     /// <summary>
@@ -116,7 +117,7 @@ namespace RovioLib
         /// <returns>Response code</returns>
         public string StopRecording(string PathName)
         {
-            return rwc.Request("rev.cgi?Cmd=nav&action=4&name="+PathName);
+            return rwc.Request("rev.cgi?Cmd=nav&action=4&name=" + PathName);
         }
 
         /// <summary>
@@ -186,7 +187,7 @@ namespace RovioLib
         /// <returns></returns>
         public string RenamePath(string OldPathName, string NewPathName)
         {
-            return rwc.Request("rev.cgi?Cmd=nav&action=11&name=" + OldPathName+"&newname"+NewPathName);
+            return rwc.Request("rev.cgi?Cmd=nav&action=11&name=" + OldPathName + "&newname=" + NewPathName);
         }
 
         /// <summary>
@@ -255,7 +256,7 @@ namespace RovioLib
         /// <returns></returns>
         public string ManualDrive(int drive, int speed)
         {
-            return rwc.Request("rev.cgi?Cmd=nav&action=18&drive="+drive.ToString()+"&speed="+speed.ToString());
+            return rwc.Request("rev.cgi?Cmd=nav&action=18&drive=" + drive.ToString() + "&speed=" + speed.ToString() );
         }
 
 
@@ -297,7 +298,7 @@ namespace RovioLib
         /// <returns></returns>
         public string SaveParameter(long index, long value)
         {
-            return rwc.Request("rev.cgi?Cmd=nav&action=23&index="+index.ToString()+"&value="+value.ToString());
+            return rwc.Request("rev.cgi?Cmd=nav&action=23&index=" + index.ToString() + "&value=" + value.ToString() );
         }
 
 
@@ -308,7 +309,7 @@ namespace RovioLib
         /// <returns></returns>
         public string ReadParameter(long index)
         {
-            return rwc.Request("rev.cgi?Cmd=nav&action=24&index="+index.ToString());
+            return rwc.Request("rev.cgi?Cmd=nav&action=24&index=" + index.ToString() );
         }
 
         /// <summary>
@@ -328,7 +329,7 @@ namespace RovioLib
         /// <returns></returns>
         public string EmailImage(string email)
         {
-            return rwc.Request("rev.cgi?Cmd=nav&action=26&email="+email);
+            return rwc.Request("rev.cgi?Cmd=nav&action=26&email=" +email );
         }
 
 
@@ -369,7 +370,7 @@ namespace RovioLib
         /// <returns></returns>
         public string ChangeResolution(int ResType)
         {
-            return rwc.Request("ChangeResolution.cgi?ResType=" + ResType.ToString());
+            return rwc.Request("ChangeResolution.cgi?ResType=" + ResType.ToString() );
         }
 
         /// <summary>
@@ -379,7 +380,7 @@ namespace RovioLib
         /// <returns></returns>
         public string ChangeCompressRatio(int Ratio)
         {
-            return rwc.Request("ChangeCompressRatio.cgi?Ratio="+Ratio.ToString());
+            return rwc.Request("ChangeCompressRatio.cgi?Ratio=" + Ratio.ToString() );
         }
 
 
@@ -401,7 +402,7 @@ namespace RovioLib
         /// <returns></returns>
         public string ChangeBrightness(int Brightness)
         {
-            return rwc.Request("ChangeBrightness.cgi?Brightness=" + Brightness.ToString());
+            return rwc.Request("ChangeBrightness.cgi?Brightness=" + Brightness.ToString() );
         }
 
         /// <summary>
@@ -411,7 +412,7 @@ namespace RovioLib
         /// <returns></returns>
         public string ChangeSpeakerVolume(int SpeakerVolume)
         {
-            return rwc.Request("ChangeSpeakerVolume.cgi?SpeakerVolume=" + SpeakerVolume.ToString());
+            return rwc.Request("ChangeSpeakerVolume.cgi?SpeakerVolume=" + SpeakerVolume.ToString() );
         }
 
         /// <summary>
@@ -421,7 +422,7 @@ namespace RovioLib
         /// <returns></returns>
         public string ChangeMicVolume(int MicVolume)
         {
-            return rwc.Request("ChangeMicVolume.cgi?MicVolume=" + MicVolume.ToString());
+            return rwc.Request("ChangeMicVolume.cgi?MicVolume=" + MicVolume.ToString() );
         }
 
         /// <summary>
@@ -431,7 +432,7 @@ namespace RovioLib
         /// <returns></returns>
         public string SetCamera(int Frequency)
         {
-            return rwc.Request("SetCamera.cgi?Frequency=" + Frequency.ToString());
+            return rwc.Request("SetCamera.cgi?Frequency=" + Frequency.ToString() );
         }
 
         /// <summary>
@@ -451,7 +452,7 @@ namespace RovioLib
         /// <returns>Privilege = 0 (for common user),Privilege = 1 (for super user),(Always returns 0 if it is in Non-authorization mode under SetUserCheck.cgi)</returns>
         public string GetMyself(bool ShowPrivilege)
         {
-            return rwc.Request("GetMyself.cgi?ShowPrivilege="+ShowPrivilege.ToString());
+            return rwc.Request("GetMyself.cgi?ShowPrivilege=" + ShowPrivilege.ToString() );
         }
 
 
@@ -463,7 +464,7 @@ namespace RovioLib
         /// <returns></returns>
         public string SetUser(string User, string Pass)
         {
-            return rwc.Request("SetUser.cgi?User="+User+"&Pass="+Pass);
+            return rwc.Request("SetUser.cgi?User=" + User + "&Pass=" + Pass);
         }
 
         /// <summary>
@@ -483,7 +484,7 @@ namespace RovioLib
         /// <returns></returns>
         public string GetUser(bool ShowPrivilege)
         {
-            return rwc.Request("GetUser.cgi?ShowPrivilege="+ShowPrivilege.ToString());
+            return rwc.Request("GetUser.cgi?ShowPrivilege=" + ShowPrivilege.ToString() );
         }
 
         /// <summary>
@@ -504,7 +505,7 @@ namespace RovioLib
         /// <returns></returns>
         public string SetTime(long Sec1970, int TimeZone)
         {
-            return rwc.Request("SetTime.cgi?Sec1970=" + Sec1970.ToString() + "&TimeZone="+TimeZone.ToString());
+            return rwc.Request("SetTime.cgi?Sec1970=" + Sec1970.ToString() + "&TimeZone=" + TimeZone.ToString() );
         }
 
 
@@ -526,7 +527,7 @@ namespace RovioLib
         /// <returns></returns>
         public string SetLogo(string showstring, int pos)
         {
-            return rwc.Request("SetLogo.cgi?showstring="+showstring+"&pos="+pos.ToString());
+            return rwc.Request("SetLogo.cgi?showstring=" + showstring + "&pos=" + pos.ToString() );
         }
         
         
@@ -547,7 +548,7 @@ namespace RovioLib
         /// <returns></returns>
         public string GetIP(string Interface)
         {
-            return rwc.Request("GetIP.cgi?Interface="+Interface);
+            return rwc.Request("GetIP.cgi?Interface=" + Interface);
         }
 
         /// <summary>
@@ -575,7 +576,7 @@ namespace RovioLib
         /// <returns></returns>
         public string SetMac(string MAC)
         {
-            return rwc.Request("SetMac.cgi?MAC="+MAC);
+            return rwc.Request("SetMac.cgi?MAC=" + MAC );
         }
         
         /// <summary>
@@ -622,7 +623,7 @@ namespace RovioLib
         /// <returns></returns>
         public string SetName(string CameraName)
         {
-            return rwc.Request("SetName.cgi?CameraName="+CameraName);
+            return rwc.Request("SetName.cgi?CameraName=" + CameraName );
         }
 
         /// <summary>
@@ -687,7 +688,7 @@ namespace RovioLib
         /// <returns></returns>
         public string SetMediaFormat(int Audio,int Video)
         {
-            return rwc.Request("SetMediaFormat.cgi?Audio=" + Audio.ToString() + "&Video=" + Video.ToString());
+            return rwc.Request("SetMediaFormat.cgi?Audio=" + Audio.ToString() + "&Video=" + Video.ToString() );
         }
 
         /// <summary>
@@ -704,10 +705,9 @@ namespace RovioLib
         /// </summary>
         /// <param name="Value">0 - Off, 1 - On</param>
         /// <returns></returns>
-
         public string SetHeadLight(int Value)
         {
-            return rwc.Request("rev.cgi?Cmd=nav&action=19&LIGHT=" + Value.ToString());
+            return rwc.Request("rev.cgi?Cmd=nav&action=19&LIGHT=" + Value.ToString() );
         }
 
     }

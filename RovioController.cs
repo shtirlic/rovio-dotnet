@@ -11,11 +11,24 @@ namespace RovioLib
     /// <summary>
     /// Class for stroring connection settings
     /// </summary>
-    class RovioSettings
+    public class RovioSettings
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public NetworkCredential RovioCredentials;
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public string RovioAddress;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username">Username to access Rovio</param>
+        /// <param name="password">Password to access Rovio</param>
+        /// <param name="address">Address to acces Rovio</param>
         public RovioSettings(string username, string password, string address)
         {
             this.RovioCredentials = new NetworkCredential(username, password);
@@ -26,16 +39,17 @@ namespace RovioLib
     /// <summary>
     /// Class for performing http requests
     /// </summary>
-    class RovioWebClient
+    public class RovioWebClient
     {
-        private WebClient wc;
-
+        private RovioSettings settings;
+   
+        /// <summary>
+        /// Constructor for RovioWebClient
+        /// </summary>
+        /// <param name="settings"></param>
         public RovioWebClient(RovioSettings settings)
         {
-            this.wc = new WebClient();
-            this.wc.Credentials = settings.RovioCredentials;
-            this.wc.BaseAddress = settings.RovioAddress;
-            
+            this.settings = settings;
         }
         /// <summary>
         /// Web request to the Rovio API 
@@ -44,10 +58,13 @@ namespace RovioLib
         /// <returns></returns>
         public string Request(string cmd)
         {
+            WebClient  wc = new WebClient();
+            wc.Credentials = settings.RovioCredentials;
+            wc.BaseAddress = settings.RovioAddress;
+    
             try
             {
-                              
-                return wc.DownloadString(new Uri(new Uri(wc.BaseAddress),cmd));
+                return wc.DownloadString(new Uri(new Uri(wc.BaseAddress), cmd));
             }
             catch (WebException e)
             {
@@ -61,26 +78,25 @@ namespace RovioLib
     
     public class RovioController
     {
-        /// <summary>
-        /// Internal object of RovioWebClient class
-        /// </summary>
         private RovioWebClient rwc;
         
         /// <summary>
-        /// Internal object of RovioSettings class
-        /// </summary>
-        private RovioSettings rovioSettings;
-
-        /// <summary>
-        /// Constructor to RovioController object 
+        /// Constructor for RovioController object 
         /// </summary>
         /// <param name="username">Username to access Rovio</param>
         /// <param name="password">Password to access Rovio</param>
         /// <param name="address">Address to acces Rovio</param>
         public RovioController(string username, string password, string address)
         {
-            this.rovioSettings = new RovioSettings(username, password, address);
-            this.rwc = new RovioWebClient(this.rovioSettings);
+            this.rwc = new RovioWebClient(new RovioSettings(username, password, address));
+        }
+        /// <summary>
+        /// Constructor for RovioController object
+        /// </summary>
+        /// <param name="settings">RovioSettings object</param>
+        public RovioController(RovioSettings settings)
+        {
+            this.rwc = new RovioWebClient(settings);
         }
 
         /// <summary>
@@ -124,7 +140,7 @@ namespace RovioLib
         /// Deletes specified path.
         /// </summary>
         /// <param name="PathName">name of the path</param>
-        /// <returns></returns>
+        /// <returns>Response code</returns>
         public string Deletepath(string PathName)
         {
             return rwc.Request("rev.cgi?Cmd=nav&action=5&name=" + PathName);

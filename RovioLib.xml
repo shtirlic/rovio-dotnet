@@ -9,10 +9,34 @@
             Class for stroring connection settings
             </summary>
         </member>
+        <member name="F:RovioLib.RovioSettings.RovioCredentials">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:RovioLib.RovioSettings.RovioAddress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RovioLib.RovioSettings.#ctor(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="username">Username to access Rovio</param>
+            <param name="password">Password to access Rovio</param>
+            <param name="address">Address to acces Rovio</param>
+        </member>
         <member name="T:RovioLib.RovioWebClient">
             <summary>
             Class for performing http requests
             </summary>
+        </member>
+        <member name="M:RovioLib.RovioWebClient.#ctor(RovioLib.RovioSettings)">
+            <summary>
+            Constructor for RovioWebClient
+            </summary>
+            <param name="settings"></param>
         </member>
         <member name="M:RovioLib.RovioWebClient.Request(System.String)">
             <summary>
@@ -26,23 +50,19 @@
             Class for accessing Rovio API
             </summary>
         </member>
-        <member name="F:RovioLib.RovioController.rwc">
-            <summary>
-            Internal object of RovioWebClient class
-            </summary>
-        </member>
-        <member name="F:RovioLib.RovioController.rovioSettings">
-            <summary>
-            Internal object of RovioSettings class
-            </summary>
-        </member>
         <member name="M:RovioLib.RovioController.#ctor(System.String,System.String,System.String)">
             <summary>
-            Constructor to RovioController object 
+            Constructor for RovioController object 
             </summary>
             <param name="username">Username to access Rovio</param>
             <param name="password">Password to access Rovio</param>
             <param name="address">Address to acces Rovio</param>
+        </member>
+        <member name="M:RovioLib.RovioController.#ctor(RovioLib.RovioSettings)">
+            <summary>
+            Constructor for RovioController object
+            </summary>
+            <param name="settings">RovioSettings object</param>
         </member>
         <member name="M:RovioLib.RovioController.GetReport">
             <summary>
@@ -74,7 +94,7 @@
             Deletes specified path.
             </summary>
             <param name="PathName">name of the path</param>
-            <returns></returns>
+            <returns>Response code</returns>
         </member>
         <member name="M:RovioLib.RovioController.GetPathList">
             <summary>

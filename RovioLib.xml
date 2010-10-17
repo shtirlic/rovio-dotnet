@@ -11,12 +11,12 @@
         </member>
         <member name="F:RovioLib.RovioSettings.RovioCredentials">
             <summary>
-            
+             Network Credential to access Rovio
             </summary>
         </member>
         <member name="F:RovioLib.RovioSettings.RovioAddress">
             <summary>
-            
+            Address to acces Rovio
             </summary>
         </member>
         <member name="M:RovioLib.RovioSettings.#ctor(System.String,System.String,System.String)">

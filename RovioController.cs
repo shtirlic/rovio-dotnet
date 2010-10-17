@@ -14,12 +14,12 @@ namespace RovioLib
     public class RovioSettings
     {
         /// <summary>
-        /// 
+        ///  Network Credential to access Rovio
         /// </summary>
         public NetworkCredential RovioCredentials;
         
         /// <summary>
-        /// 
+        /// Address to acces Rovio
         /// </summary>
         public string RovioAddress;
 

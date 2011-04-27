@@ -302,6 +302,17 @@ namespace RovioLib
 
 
         /// <summary>
+        ///  Turning on/off IR detector.
+        /// </summary>
+        /// <param name="state">0 - off, 1 - on</param>
+        /// <returns></returns>
+        public string SetIRState(int state)
+        {
+            return rwc.RequestString("rev.cgi?Cmd=nav&action=19&IR="+state.ToString());
+        }
+
+
+        /// <summary>
         /// Returns MCU report including wheel encoders and IR obstacle avoidance.
         /// </summary>
         /// <returns></returns>

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("RovioLib")]
-[assembly: AssemblyDescription("Library to Control Rovio robot")]
+[assembly: AssemblyDescription("Rovio API .NET Library for WowWee Rovio Wi-Fi Enabled Robotic WebCam")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Serg Podtynnyi")]
 [assembly: AssemblyProduct("RovioLib")]
-[assembly: AssemblyCopyright("Copyright © Serg Podtynnyi 2009")]
+[assembly: AssemblyCopyright("Copyright © Serg Podtynnyi 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
